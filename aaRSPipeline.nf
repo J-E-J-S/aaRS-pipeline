@@ -9,9 +9,8 @@ process mutationPerms{
     file mutations
 
     output:
-    stdout x into permutations_ch
+    stdout permutations_ch
 
-    script:
 
     """
     mutationPerms.py ${mutations}
@@ -20,15 +19,17 @@ process mutationPerms{
 }
 //permutations_ch.view() //debug
 
-process writeMutFile{
+mutFiles = Channel.fromPath(launchDir + '/output/mutFiles/*.mutfile')
+process structurePrediction{
 
     input:
-    val permutations_ch
+    file mutFile from mutFiles
+
     output:
     stdout results
 
     """
-    test.py $permutations_ch
+    echo $mutFile
     """
 }
 
