@@ -34,6 +34,7 @@ def readMutations(mutFile):
                 mutant += residue
             permutations.append(mutant)
 
+
         read_file.close()
 
         print(permutations) # output to stdout channel as string (!)
@@ -75,19 +76,6 @@ def writeOptionFiles(permutations):
         f.close()
         count += 1
 
-
-def writeOptionFiles(permutations):
-
-    protein_template = launchDir + '/inputs/*.pdb'
-
-    count = 0
-    while count < len(permutations):
-        shutil.copy2(launchDir + '/resources/option', launchDir + '/output/optionFiles') #copy from template
-        os.rename(launchDir + '/output/optionFiles/option', launchDir+'/output/optionFiles/' + str(count) + '_option')
-        f = open(launchDir + '/output/optionFiles/' + str(count) + '_option', 'a')
-        f.write('-ddg:mut_file ' + launchDir + '/output/mutFiles/' + str(count) + '.mutfile')  # replaces last line with .mutfile specific
-        f.close()
-        count += 1
 
 def main():
 
