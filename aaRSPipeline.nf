@@ -10,27 +10,28 @@ process structurePrediction{
     file optionFile from optionFiles_ch
 
     output:
-    path structureDir into workDir
+    path structureDir into structureDir_ch
 
 
     script:
     """
-    $rosettaCartesian @$optionFile
+    test.py @$optionFile > structureDir
     echo 'Completed - ${optionFile}'
     """
 
 }
 
-process testCall{
+//Pick up structure prediction dir from structureDir_ch, use basename path (as path will first go to output file)
+process nativeDocking {
     input:
-    path structureDir from workDir
+    path structureDir from structureDir_ch
 
     output:
     stdout results
 
     script:
     """
-    echo $structureDir
+    realpath $structureDir
     """
 }
 
