@@ -11,6 +11,7 @@ process structurePrediction{
 
     output:
     path structureDir into structureDir_ch
+    stdout structurePredictionCheckPoint_ch
 
 
     script:
@@ -20,6 +21,8 @@ process structurePrediction{
     """
 
 }
+
+structurePredictionCheckPoint_ch.view()
 
 //Pick up structure prediction dir from structureDir_ch, use basename path (as path will first go to output file)
 process nativeDocking {
