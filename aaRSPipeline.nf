@@ -16,26 +16,27 @@ process structurePrediction{
 
     script:
     """
-    test.py @$optionFile > structureDir
+    dummyStructure.py @$optionFile > structureDir
     echo 'Completed - ${optionFile}'
     """
 
 }
-
 structurePredictionCheckPoint_ch.view()
 
-//Pick up structure prediction dir from structureDir_ch, use basename path (as path will first go to output file)
-process nativeDocking {
+//Find lowest free energy structure and outputs path to .pdb file
+process minimizedStructure{
     input:
     path structureDir from structureDir_ch
 
     output:
-    stdout results
+    stdout mutantStructure into mutantStructure_ch
 
-    script:
-    """
-    realpath $structureDir
-    """
+    shell:
+    '''
+    min=$(minimizedStructure.py $(dirname $(realpath !{structureDir}))/*.ddg)
+    minPath=$(dirname $(realpath !{structureDir}))'/'$min
+
+    echo $minPath
+    '''
 }
-
-results.view()
+mutantStructure_ch.view()

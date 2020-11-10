@@ -9,10 +9,12 @@ cbdock="$(pwd)/resources/CB-Dock/setup.sh"
 vina="$(pwd)/resources/autodock_vina_1_1_2_linux_x86/bin/vina"
 mglTools="$(pwd)/resources/mgltools_x86_64Linux2_1.5.6/bin/python"
 
+# Run Python script for creating file system
 echo 'Begining File Preparation.'
 ./bin/filePreparation.py ./inputs/mutations.txt
 echo 'File Preparation Complete.'
 
+# Run CB-Dock setup.sh script
 $cbdock $vina $mglTools
 echo 'CB-Dock Initialization Complete.'
 
