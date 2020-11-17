@@ -2,6 +2,7 @@
 
 optionFiles_ch = Channel.fromPath(launchDir + '/output/optionFiles/*')
 rosettaCartesian = launchDir + '/resources/rosetta_bin_linux_2020.08.61146_bundle/main/source/build/src/release/linux/3.10/64/x86/gcc/4.8/static/cartesian_ddg.static.linuxgccrelease'
+cbdock = launchDir + '/resources/CB-Dock/prog/AutoBlindDock.pl'
 
 //Passes option Files to Rosetta cartesian for output
 process structurePrediction{
@@ -39,4 +40,22 @@ process minimizedStructure{
     echo $minPath
     '''
 }
-mutantStructure_ch.view()
+//mutantStructure_ch.view() //debug
+
+//Dock mutant with native substrate
+ligand=launchDir + '/inputs/ligand.mol2'
+template=launchDir + '/inputs/receptor.pdb'
+process nativeDocking{
+    input:
+    val mutantStructure from mutantStructure_ch
+
+    output:
+    stdout results
+
+    shell:
+    '''
+    outputDir=$(pwd)
+    !{cbdock} !{template} !{ligand} 1 $outputDir
+    '''
+}
+results.view()
