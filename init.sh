@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
 # ToDo - Need to change paths so init can be called at any destination
+# need to change path in option file
+# add error checking for failed shell script runs 
 
 echo 'Begining Initialization.'
 

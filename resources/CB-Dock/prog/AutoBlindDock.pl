@@ -1,4 +1,13 @@
 #!/usr/bin/perl
+
+# Modified to take an output directory not under the dock_file dir
+# Use as previous but [UserDir] is the output directory and can be anywhere
+# Dock scores are outputted to regular .log file
+# .mol2 of docked ligands is outputted to results.mol2 in generated directory
+# Note // above may fail for more than 1 cavities
+# Would be worth cleaning up all the unneccesary created files and possible the file structure itself
+# Failing to work for first submitted docking - possibly because of some concurrency issues with receptor.pdb use
+
 use strict;
 
 if($#ARGV!=3)
@@ -119,7 +128,7 @@ my $progPath="$userDirName/../../../resources/CB-Dock/prog"; # replacement for a
 	}
 
 	#system ("rm $protein");
-	system ("mv $pro_format $outf\/receptor.pdb");
+	system ("mv $pro_format $outf\/receptor.pdb"); # changed mv -> cp to avoid concurrency issues (solved)
 	system ("cp $ligand $outf\/ligand.mol2");
 
 	####################################################################

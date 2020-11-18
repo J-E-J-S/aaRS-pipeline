@@ -1,10 +1,21 @@
 #!/usr/bin/env nextflow
 
+println """
+
+###############################################################################
+THANKS FOR USING THE aaRS PIPELINE - AIDING GENETIC CODE EXPANSION.
+Version - 1.0
+Author - James Sanders
+###############################################################################
+
+"""
+
+// Declare Global Variables
 optionFiles_ch = Channel.fromPath(launchDir + '/output/optionFiles/*')
 rosettaCartesian = launchDir + '/resources/rosetta_bin_linux_2020.08.61146_bundle/main/source/build/src/release/linux/3.10/64/x86/gcc/4.8/static/cartesian_ddg.static.linuxgccrelease'
 cbdock = launchDir + '/resources/CB-Dock/prog/AutoBlindDock.pl'
 
-//Passes option Files to Rosetta cartesian for output
+// Passes option Files to Rosetta Cartesian for Structure Prediction
 process structurePrediction{
 
     input:
@@ -17,14 +28,15 @@ process structurePrediction{
 
     script:
     """
-    dummyStructure.py @$optionFile > structureDir
+    dummyStructure.py @$optionFile > structureDir # replace with rossetaCartesian when in prod.
     echo 'Completed - ${optionFile}'
     """
 
 }
 structurePredictionCheckPoint_ch.view()
 
-//Find lowest free energy structure and outputs path to .pdb file
+
+// Finds the Lowest Free Energy Structure and Outputs Path to .pdb File
 process minimizedStructure{
     input:
     path structureDir from structureDir_ch
@@ -40,14 +52,34 @@ process minimizedStructure{
     echo $minPath
     '''
 }
-//mutantStructure_ch.view() //debug
 
-//Dock mutant with native substrate
-ligand=launchDir + '/inputs/ligand.mol2'
-template=launchDir + '/inputs/receptor.pdb'
+
+// Docks Mutant with Native Substrate Supplied in /inputs/ dir
+nativeLigand=launchDir + '/inputs/nativeLigand.mol2'
 process nativeDocking{
     input:
     val mutantStructure from mutantStructure_ch
+
+    output:
+    path nativeDocking into nativeDocking_ch
+    stdout mutantStructure2_ch
+
+    shell:
+    '''
+    outputDir=$(pwd)
+    main="!{cbdock} !{mutantStructure}" # solves bug if concatanated together
+    $main !{nativeLigand} 1 $outputDir > nativeDocking
+
+    echo !{mutantStructure}
+    '''
+}
+
+
+// Docks Mutant with Target Substrate Supplied in /inputs/ dir 
+exogenousLigand=launchDir = '/inputs/exogenousLigand.mol2'
+process exogenousDocking{
+    input:
+    val mutantStructure from mutantStructure2_ch
 
     output:
     stdout results
@@ -55,7 +87,11 @@ process nativeDocking{
     shell:
     '''
     outputDir=$(pwd)
-    !{cbdock} !{template} !{ligand} 1 $outputDir
+    main="!{cbdock} !{mutantStructure}" # solves bug if concatanated together
+    $main !{exogenousLigand} 1 $outputDir > exogenousDocking
+
+    echo !{mutantStructure}
     '''
 }
+
 results.view()
