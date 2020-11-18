@@ -75,8 +75,8 @@ process nativeDocking{
 }
 
 
-// Docks Mutant with Target Substrate Supplied in /inputs/ dir 
-exogenousLigand=launchDir = '/inputs/exogenousLigand.mol2'
+// Docks Mutant with Target Substrate Supplied in /inputs/ dir
+exogenousLigand=launchDir = launchDir + '/inputs/exogenousLigand.mol2'
 process exogenousDocking{
     input:
     val mutantStructure from mutantStructure2_ch
