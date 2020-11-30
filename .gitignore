@@ -2,3 +2,4 @@
 /resources
 *.nextflow.log*
 *.nextflow
+/env/

@@ -48,7 +48,7 @@ my $errfile=$dock_file."_err.txt";
 my $config="config.txt";
 my %conf;
 #my $progPath="./resources/CB-Dock/prog"; #Need to change this to relative pathing, original = './prog'
-my $progPath="$userDirName/../../../resources/CB-Dock/prog"; # replacement for above for abstraction - James
+my $progPath="$userDirName/../../../../resources/CB-Dock/prog"; # replacement for above for abstraction - James
 
 	mkdir "$outf";
 	system ("touch $outf\/$errfile");

@@ -67,9 +67,21 @@ process nativeDocking{
     shell:
     '''
     outputDir=$(pwd)
-    main="!{cbdock} !{mutantStructure}" # solves bug if concatanated together
-    $main !{nativeLigand} 1 $outputDir > nativeDocking
 
+    # Create Replicate Dirs
+    mkdir 1
+    mkdir 2
+    mkdir 3
+
+    main="!{cbdock} !{mutantStructure}" # solves bug if concatanated together
+    echo Replicate 1: >> nativeDocking
+    $main !{nativeLigand} 1 "$outputDir/1" >> nativeDocking
+    echo Replicate 2: >> nativeDocking
+    $main !{nativeLigand} 1 "$outputDir/2" >> nativeDocking
+    echo Replicate 3: >> nativeDocking
+    $main !{nativeLigand} 1 "$outputDir/3" >> nativeDocking
+
+    # Pass on mutant structure for use by exogenous docking
     echo !{mutantStructure}
     '''
 }
@@ -87,8 +99,18 @@ process exogenousDocking{
     shell:
     '''
     outputDir=$(pwd)
+
+    mkdir 1
+    mkdir 2
+    mkdir 3
+
     main="!{cbdock} !{mutantStructure}" # solves bug if concatanated together
-    $main !{exogenousLigand} 1 $outputDir > exogenousDocking
+    echo Replicate 1: >> exogenousDocking
+    $main !{exogenousLigand} 1 "$outputDir/1" >> exogenousDocking
+    echo Replicate 2: >> exogenousDocking
+    $main !{exogenousLigand} 1 "$outputDir/2" >> exogenousDocking
+    echo Replicate 3: >> exogenousDocking
+    $main !{exogenousLigand} 1 "$outputDir/3" >> exogenousDocking
 
     echo !{mutantStructure}
     '''
