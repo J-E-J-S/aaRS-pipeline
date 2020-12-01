@@ -94,7 +94,7 @@ process exogenousDocking{
     val mutantStructure from mutantStructure2_ch
 
     output:
-    stdout results
+    path exogenousDocking into exogenousDocking_ch
 
     shell:
     '''
@@ -111,9 +111,5 @@ process exogenousDocking{
     $main !{exogenousLigand} 1 "$outputDir/2" >> exogenousDocking
     echo Replicate 3: >> exogenousDocking
     $main !{exogenousLigand} 1 "$outputDir/3" >> exogenousDocking
-
-    echo !{mutantStructure}
     '''
 }
-
-results.view()
