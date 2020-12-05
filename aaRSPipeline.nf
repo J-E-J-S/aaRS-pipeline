@@ -2,11 +2,11 @@
 
 println """
 
-###############################################################################
+################################################################################
 THANKS FOR USING THE aaRS PIPELINE - AIDING GENETIC CODE EXPANSION.
 Version - 1.0
 Author - James Sanders
-###############################################################################
+################################################################################
 
 """
 
@@ -113,3 +113,23 @@ process exogenousDocking{
     $main !{exogenousLigand} 1 "$outputDir/3" >> exogenousDocking
     '''
 }
+
+// Process Docking Results into a JSON for Analysis
+process docktoJSON{
+    input:
+    path nativeDocking from nativeDocking_ch
+    path exogenousDocking from exogenousDocking_ch
+
+    output:
+    stdout results
+
+    shell:
+    '''
+    nativeDocking=$(dirname $(realpath !{nativeDocking}))
+    exogenousDocking=$(dirname $(realpath !{exogenousDocking}))
+
+    docktoJSON.py $nativeDocking $exogenousDocking
+    '''
+}
+
+results.view()

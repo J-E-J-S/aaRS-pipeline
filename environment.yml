@@ -4,6 +4,8 @@ channels:
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
+  - biopandas=0.2.7=pyh9f0ad1d_1
+  - blas=1.0=mkl
   - ca-certificates=2020.11.8=ha878542_0
   - cairo=1.16.0=h3fc0475_1005
   - certifi=2020.11.8=py38h578d9bd_0
@@ -11,6 +13,7 @@ dependencies:
   - freetype=2.10.4=h7ca028e_0
   - glib=2.66.1=h92f7085_0
   - icu=67.1=he1b5a44_0
+  - intel-openmp=2020.2=254
   - ld_impl_linux-64=2.33.1=h53a641e_7
   - libedit=3.1.20191231=h14c3975_1
   - libffi=3.3=he6710b0_2
@@ -21,17 +24,27 @@ dependencies:
   - libuuid=2.32.1=h14c3975_1000
   - libxcb=1.13=h14c3975_1002
   - libxml2=2.9.10=h68273f3_2
+  - mkl=2020.2=256
+  - mkl-service=2.3.0=py38he904b0f_0
+  - mkl_fft=1.2.0=py38h23d657b_0
+  - mkl_random=1.1.1=py38h0573a6f_0
   - ncurses=6.2=he6710b0_1
+  - numpy=1.19.2=py38h54aff64_0
+  - numpy-base=1.19.2=py38hfa32c7d_0
   - openbabel=3.1.1=py38hf4b5c11_1
   - openssl=1.1.1h=h516909a_0
+  - pandas=1.1.3=py38he6710b0_0
   - pcre=8.44=he1b5a44_0
   - pip=20.2.3=py38_0
   - pixman=0.38.0=h516909a_1003
   - pthread-stubs=0.4=h14c3975_1001
   - python=3.8.5=h7579374_1
+  - python-dateutil=2.8.1=py_0
   - python_abi=3.8=1_cp38
+  - pytz=2020.4=pyhd3eb1b0_0
   - readline=8.0=h7b6447c_0
   - setuptools=50.3.0=py38hb0f4dca_1
+  - six=1.15.0=py38h06a4308_0
   - sqlite=3.33.0=h62c20be_0
   - tk=8.6.10=hbc83047_0
   - wheel=0.35.1=py_0
