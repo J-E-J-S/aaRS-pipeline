@@ -3,3 +3,4 @@
 *.nextflow.log*
 *.nextflow
 /env/
+/output/results.json

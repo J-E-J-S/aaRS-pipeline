@@ -185,7 +185,7 @@ def createSummaryDic(nativeDockingDir, exogenousDockingDir):
 
 def updateJSON(summaryDic):
     '''Input = the mutants summary results dictionary, fn updates the results JSON file'''
-    mutantObject = {mutantID:summaryDic} # {mutant_1: {pAF_scores:, Tyr_score:, Delta:}, mutant_2:{pAF_score:, Tyr_score:, Delta:}....}
+    mutantObject = {'mutant_'+ mutantID:summaryDic} # {mutant_1: {pAF_scores:, Tyr_score:, Delta:}, mutant_2:{pAF_score:, Tyr_score:, Delta:}....}
 
     # Checks to see if this is first mutant result
     if os.path.isfile(binDir+'/../output/results.json') != True:
@@ -203,5 +203,6 @@ def updateJSON(summaryDic):
 def main():
 
     updateJSON(createSummaryDic(nativeDockingDir, exogenousDockingDir))
+    print("Completed - Mutant " + mutantID) # output to nextflow console for progress check
 
 main()
