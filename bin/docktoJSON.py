@@ -8,11 +8,13 @@ import sys
 from biopandas.mol2 import PandasMol2
 from biopandas.mol2 import split_multimol2
 import pandas as pd
+import json
 
 # Declare Global Variables
 nativeDockingDir = sys.argv[1]
 binDir = os.path.dirname(sys.argv[0])
 exogenousDockingDir = sys.argv[2]
+mutantID = sys.argv[3].replace('_option', '')
 
 #Tested - working
 def findLogFiles(mutantDockDir):
@@ -147,22 +149,59 @@ def calculateRMSD(replicateDir, nativeLigandPath, exogenousLigandPath):
 
     return rmsds
 
+def createSummaryDic(nativeDockingDir, exogenousDockingDir):
+    '''Input = parent dirs of mutants native and exogenous Docking Dirs, Output = Results Dic '''
+
+    nlLogs = findLogFiles(nativeDockingDir) # Returns list of 3 log file paths
+    elLogs = findLogFiles(exogenousDockingDir)
+
+    nlScores = [] # Holds greatest Dock Scores for native across 3 log files
+    for path in nlLogs:
+        nlScores.append(calculateDockScore(path)[0]) # Only need first item of list as this will be greatest native score
+
+    elScores = {} # Holds greatest dock score : path of its log file
+    for path in elLogs:
+        elScores[calculateDockScore(path)[0]] = path # This needs to be path to log file because will be looped later
+
+    summaryDic = {'exogenousScores': '', 'nativeScore':'', 'Delta':'', 'RMSD':'' } # Results for mutant
+
+    elMaxDock = min(elScores) # finds lowest key value in dic i.e. greatest docking score
+    elMaxLog = elScores[elMaxDock] # finds path to log file of greatest docking scoring replicate
+    elScoreList = calculateDockScore(elMaxLog) # Docking Scores for all modes in highest scoring replicate as list
+    summaryDic['exogenousScores'] = elScoreList # Updates the results dictionary to hold all modes scores
+
+    nlMaxDock = min(nlScores) # Find lowest tyrosine score i.e. Greatest docking scoring
+    summaryDic['nativeScore'] = nlMaxDock # Update results dictionary for native score
+
+    deltas = []
+    for score in elScoreList:
+        deltas.append(round(score-nlMaxDock,1)) # Bug if don't round
+    summaryDic['Delta'] = deltas # Update results dictionary for deltas
+
+    rmsd = calculateRMSD(os.path.dirname(elScores[elMaxDock]), binDir+'/../inputs/nativeLigand.mol2', binDir+'/../inputs/exogenousLigand.mol2')
+    summaryDic['RMSD'] = rmsd
+
+    return summaryDic
+
+def updateJSON(summaryDic):
+    '''Input = the mutants summary results dictionary, fn updates the results JSON file'''
+    mutantObject = {mutantID:summaryDic} # {mutant_1: {pAF_scores:, Tyr_score:, Delta:}, mutant_2:{pAF_score:, Tyr_score:, Delta:}....}
+
+    # Checks to see if this is first mutant result
+    if os.path.isfile(binDir+'/../output/results.json') != True:
+        f = open(binDir+'/../output/results.json', 'w')
+        f.write('{}')
+        f.close()
+
+    with open(binDir+'/../output/results.json', 'r+') as file:
+        data = json.load(file)
+        data.update(mutantObject)
+        file.seek(0)
+        json.dump(data, file)
 
 
 def main():
 
-    logs = findLogFiles(nativeDockingDir)
-    scores = []
-    rmsds = []
-    for i in logs:
-        scores.append(calculateDockScore(i))
-
-    for i in range(1,4):
-        replicatePath = exogenousDockingDir + '/' + str(i)
-        rmsds.append(calculateRMSD(replicatePath, binDir+'/../inputs/nativeLigand.mol2', binDir+"/../inputs/exogenousLigand.mol2"))
-
-    print(rmsds)
-
-    #print(scores)
+    updateJSON(createSummaryDic(nativeDockingDir, exogenousDockingDir))
 
 main()

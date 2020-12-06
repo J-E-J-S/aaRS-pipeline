@@ -23,17 +23,17 @@ process structurePrediction{
 
     output:
     path structureDir into structureDir_ch
-    stdout structurePredictionCheckPoint_ch
+    stdout mutantID_ch
 
 
     script:
     """
     dummyStructure.py @$optionFile > structureDir # replace with rossetaCartesian when in prod.
-    echo 'Completed - ${optionFile}'
+    echo ${optionFile}
     """
 
 }
-structurePredictionCheckPoint_ch.view()
+//structurePredictionCheckPoint_ch.view()
 
 
 // Finds the Lowest Free Energy Structure and Outputs Path to .pdb File
@@ -119,6 +119,7 @@ process docktoJSON{
     input:
     path nativeDocking from nativeDocking_ch
     path exogenousDocking from exogenousDocking_ch
+    val mutantID from mutantID_ch
 
     output:
     stdout results
@@ -128,7 +129,7 @@ process docktoJSON{
     nativeDocking=$(dirname $(realpath !{nativeDocking}))
     exogenousDocking=$(dirname $(realpath !{exogenousDocking}))
 
-    docktoJSON.py $nativeDocking $exogenousDocking
+    docktoJSON.py $nativeDocking $exogenousDocking !{mutantID}
     '''
 }
 
