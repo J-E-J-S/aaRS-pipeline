@@ -30,8 +30,10 @@ if $install; then
     mglTools="$(pwd)/resources/mgltools_x86_64Linux2_1.5.6/bin"
 
     # Install mglTools
+
     cd "$(pwd)/resources/mgltools_x86_64Linux2_1.5.6"
-    "./install.sh" # Has to be executed in install.sh holding dir
+    echo "Begining Installation of MGL Tools - This May Take Some Time."
+    "./install.sh" &>/dev/null # Has to be executed in install.sh holding dir, remove &>/dev/null for error checking 
     if [[ $? -eq 0 ]]
     then
         echo "MGL Tools Installation Complete."
