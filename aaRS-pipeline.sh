@@ -3,27 +3,27 @@
 run=false
 install=false
 init=false
-while getopts ":ihnr" opt; do
+while getopts ":ihmr" opt; do
     case ${opt} in
         i )
             install=true
             ;;
-        n )
+        m )
             init=true
-            ;;
-        h )
-            echo "Usage:"
-            echo "       ./aaRS-pipeline.sh -i        Install Pipeline Resources (Essential for First Time Use)."
-            echo "       ./aaRS-pipeline.sh -n        Initialize Mutant File System (Essential for First Time Use)."
-            echo "       ./aaRS-pipeline.sh -r        Run Nextflow main.nf ."
-            echo "       ./aaRS-pipeline.sh -h        Display this Help Message."
-            exit 0
             ;;
         r )
             run=true
             ;;
+        h )
+            echo "Usage:"
+            echo "       ./aaRS-pipeline.sh -i        Install Pipeline Resources (Essential for First Time Use)."
+            echo "       ./aaRS-pipeline.sh -m        Initialize Mutant File System (Essential for First Time Use)."
+            echo "       ./aaRS-pipeline.sh -r        Run Nextflow main.nf ."
+            echo "       ./aaRS-pipeline.sh -h        Display this Help Message."
+            exit 0
+            ;;
         \? )
-            echo "Usage: ./aaRS-pipeline.sh [-i] [-n] [-r ][-h]"
+            echo "Usage: ./aaRS-pipeline.sh [-i] [-m] [-r] [-h]"
             exit 1
         ;;
     esac
