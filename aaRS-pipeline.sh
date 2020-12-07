@@ -2,18 +2,19 @@
 
 run=false
 install=false
+init=false
 while getopts ":ihnr" opt; do
     case ${opt} in
         i )
             install=true
             ;;
         n )
-            install=false
+            init=true
             ;;
         h )
             echo "Usage:"
-            echo "       ./aaRS-pipeline.sh -i        Install Pipeline Resources and Initialize Mutant File System."
-            echo "       ./aaRS-pipeline.sh -n        Initialize Mutant File System, No Install."
+            echo "       ./aaRS-pipeline.sh -i        Install Pipeline Resources (Essential for First Time Use)."
+            echo "       ./aaRS-pipeline.sh -n        Initialize Mutant File System (Essential for First Time Use)."
             echo "       ./aaRS-pipeline.sh -r        Run Nextflow main.nf ."
             echo "       ./aaRS-pipeline.sh -h        Display this Help Message."
             exit 0
@@ -62,14 +63,16 @@ if $install; then
 fi
 
 # Create .mutfiles and option files for mutant run
-echo "Begining Initialization of Mutant File System."
-./bin/filePreparation.py ./inputs/mutations.txt
-if [[ $? -eq 0 ]]
-then
-    echo "File Preperation Complete."
-else
-    echo "Error in Mutant File Preperation."
-    exit 1
+if $init; then
+    echo "Begining Initialization of Mutant File System."
+    ./bin/filePreparation.py ./inputs/mutations.txt
+    if [[ $? -eq 0 ]]
+    then
+        echo "File Preperation Complete."
+    else
+        echo "Error in Mutant File Preperation."
+        exit 1
+    fi
 fi
 
 # Commence Pipeline if -r (run) used
