@@ -37,7 +37,7 @@ def readMutations(mutFile):
 
         read_file.close()
 
-        print(permutations) # output to stdout channel as string (!)
+        #print(permutations) # output to stdout channel as string (!)
 
 
         return permutations, positions

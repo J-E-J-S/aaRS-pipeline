@@ -1,6 +1,6 @@
-/work
-/resources
+/work/
+/resources/
 *.nextflow.log*
 *.nextflow
 /env/
-/output/results.json
+/output/

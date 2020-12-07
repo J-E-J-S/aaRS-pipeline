@@ -33,7 +33,6 @@ process structurePrediction{
     """
 
 }
-//structurePredictionCheckPoint_ch.view()
 
 
 // Finds the Lowest Free Energy Structure and Outputs Path to .pdb File
@@ -122,7 +121,7 @@ process docktoJSON{
     val mutantID from mutantID_ch
 
     output:
-    stdout results
+    stdout progress
 
     shell:
     '''
@@ -133,4 +132,4 @@ process docktoJSON{
     '''
 }
 
-results.view()
+progress.view()

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-# This script is used to identify structure produced by Rosetta Cartesian
-# with the lowest free energy.
+# This script is used to identify structure produced by Rosetta Cartesian with the lowest free energy.
 
 import os
 import sys
