@@ -24,7 +24,8 @@ Mutants are then scored for fitness using the Delta and RMSD metrics.
 **Delta:**
 * Measures enzyme engineered favourability as: `NCAA Dock Score - Native Dock Score`
 * Lower the score, the greater the engineered affinity for the NCAA over the
-native substrate\  
+native substrate\
+
 **RMSD:**
 * Estimation metric of the mutant producing a productive docking pose with the
 target NCAA
@@ -35,3 +36,7 @@ productive binding pose.
 
 
 ## Quick Start
+1. `git clone https://github.com/J-E-J-S/aaRS-pipeline`
+2. `conda env create -f environment.yml`
+3. `conda activate aaRS-pipeline`
+4. `./aaRS-pipeline.sh -i -m -r`
