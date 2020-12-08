@@ -65,9 +65,9 @@ Where:
 ### Running the Pipeline
 * To install the prerequisite scripts run the shell script with the `-i` option (this only has to be performed once)
 `./aaRS-pipeline.sh -i `
-* To prepare the mutational file system to begin pipeline flow, run the shell script with the `-m` option (this has to be performed for every new template enzyme or mutational context)
+* To prepare the mutational file system to begin pipeline flow, run the shell script with the `-m` option (this has to be performed for every new template enzyme or mutational context)    
 `./aaRS-pipeline.sh -m`
-* To begin the pipeline, run the shell script with the `-r` option, or, with cmd `nextflow run main.nf`
-`./aaRS-pipeline.sh -r`
-* To run pipeline from beginning to end as a new user, combine all options
+* To begin the pipeline, run the shell script with the `-r` option  
+`./aaRS-pipeline.sh -r` or run `nextflow run main.nf`
+* To run pipeline from beginning to end as a new user, combine all options  
 `./aaRS-pipeline.sh -i -m -r`
