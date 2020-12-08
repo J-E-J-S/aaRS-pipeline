@@ -36,6 +36,9 @@ productive binding pose.
 
 
 ## Quick Start
+This is a [Nextflow](https://www.nextflow.io/) pipeline and as such can only be
+run on a POSIX OS, if using windows I'd recommend using the [Windows Subsystem for
+Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)  
 1. `git clone https://github.com/J-E-J-S/aaRS-pipeline`
 2. `conda env create -f environment.yml`
 3. `conda activate aaRS-pipeline`
@@ -71,3 +74,17 @@ Where:
 `./aaRS-pipeline.sh -r` or run cmd `nextflow run main.nf`
 * To run pipeline from beginning to end as a new user, combine all options  
 `./aaRS-pipeline.sh -i -m -r`
+### Results
+Results are compiled into a JSON object that can be found in the `/output/`
+directory, in the form:  
+```
+{
+    mutantID:
+                {
+                    'exogenousScores': []
+                    'nativeScore': float
+                    'Delta': []
+                    'RMSD' : []
+                }
+}
+```
