@@ -1,4 +1,4 @@
-# aaRS Engineering Pipeline 🧬
+# An aaRS Engineering Pipeline 🧬
 
 ## A Scalable Pipeline for the Discovery of aaRS Mutants to Aid in Genetic Code Expansion.
 
@@ -43,14 +43,31 @@ productive binding pose.
 
 ## Usage
 ### Inputs
-1. Create a `mutations.txt` file in the `/inputs/` directory
+1. Create a `mutations.txt` file in the `/inputs/` directory\  
 Must be in form:
 ```
 X99 MNQ
 Y100 MNQ
 ...
 ```
-Where:\
-* X is the single-letter ID for the wild-type residue to be mutated\  
-* The number '99' is the residue number of the mutable position\  
-* MNQ is the pool of residues to be mutated at this position\  
+Where:
+* X is the single-letter ID for the wild-type residue to be mutated
+* The number '99' is the residue number of the mutable position
+* MNQ is the pool of residues to be mutated at this position
+
+2. Add the native and exogenous (target) amino acids to the `/inputs/` directory
+* Amino acids have to be labelled as `nativeLigand.mol2` and `exogenousLigand.mol2` respectively
+* Amino acids must be in `.mol2` standard
+* The native amino acids must be taken from the known crystal structure of the template enzyme
+    * This permits the RMSD calculation to estimate the productivity of the NCAA docking pose
+
+3. Add the template enzyme `.pdb` file to the `/inputs/` directory
+### Running the Pipeline
+* To install the prerequisite scripts run the shell script with the `-i` option (this only has to be performed once)
+`./aaRS-pipeline.sh -i `
+* To prepare the mutational file system to begin pipeline flow, run the shell script with the `-m` option (this has to be performed for every new template enzyme or mutational context)
+`./aaRS-pipeline.sh -m`
+* To begin the pipeline, run the shell script with the `-r` option, or, with cmd `nextflow run main.nf`
+`./aaRS-pipeline.sh -r`
+* To run pipeline from beginning to end as a new user, combine all options
+`./aaRS-pipeline.sh -i -m -r`
