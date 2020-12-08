@@ -17,7 +17,9 @@ The engineering workflow facilitates structure prediction of mutant enzymes
 through ![Rosetta Cartesian](https://www.rosettacommons.org/docs/latest/cartesian-ddG) energy minimization, followed by blind docking of
 native and target (exogenous) amino acids by ![CB-Dock](http://clab.labshare.cn/cb-dock/php/).
 
-### Scoring
+![](assets/pipeline.jpg)
+
+## Scoring
 **Delta:**
 * NCAA Dock Score - Native Dock Score
 * Lower the score, the greater the engineered affinity for the NCAA over the
