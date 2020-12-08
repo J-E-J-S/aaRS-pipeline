@@ -14,8 +14,8 @@ pre-existing CAAs.
 
 ## Workflow
 The engineering workflow facilitates structure prediction of mutant enzymes
-through ![Rosetta Cartesian](https://www.rosettacommons.org/docs/latest/cartesian-ddG) energy minimization, followed by blind docking of
-native and target (exogenous) amino acids by ![CB-Dock](http://clab.labshare.cn/cb-dock/php/).
+through [Rosetta Cartesian](https://www.rosettacommons.org/docs/latest/cartesian-ddG) energy minimization, followed by blind docking of
+native and target (exogenous) amino acids by [CB-Dock](http://clab.labshare.cn/cb-dock/php/).
 
 ![](assets/pipeline.jpg)
 
@@ -23,7 +23,7 @@ native and target (exogenous) amino acids by ![CB-Dock](http://clab.labshare.cn/
 **Delta:**
 * NCAA Dock Score - Native Dock Score
 * Lower the score, the greater the engineered affinity for the NCAA over the
-native substrate\
+native substrate\  
 **RMSD:**
 * Root-Mean-Square Deviation of the exogenously docked NCAA to the crystal-structure
 derived docking position of the native amino acid
@@ -31,3 +31,6 @@ derived docking position of the native amino acid
 target NCAA
 * Lower the RMSD, the greater the mutant appears to dock the NCAA in a
 productive binding pose.
+
+
+## Quick Start
