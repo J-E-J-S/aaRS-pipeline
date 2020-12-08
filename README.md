@@ -40,3 +40,17 @@ productive binding pose.
 2. `conda env create -f environment.yml`
 3. `conda activate aaRS-pipeline`
 4. `./aaRS-pipeline.sh -i -m -r`
+
+## Usage
+### Inputs
+1. Create a `mutations.txt` file in the `/inputs/` directory
+Must be in form:
+```
+X99 MNQ
+Y100 MNQ
+...
+```
+Where:\
+* X is the single-letter ID for the wild-type residue to be mutated\  
+* The number '99' is the residue number of the mutable position\  
+* MNQ is the pool of residues to be mutated at this position\  
