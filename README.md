@@ -17,11 +17,11 @@ native and target (exogenous) amino acids by CB-Dock.
 
 ### Scoring
 **Delta:**\
-    * NCAA Dock Score - Native Dock Score\
-    * Lower the score, the greater the engineered affinity for the NCAA over the
-    native substrate\
+* NCAA Dock Score - Native Dock Score\
+* Lower the score, the greater the engineered affinity for the NCAA over the
+native substrate\
 **RMSD:**\
-    * Root-Mean-Square Deviation of native and exogenous docked amino acids\
-    * Measures likelihood of mutant producing a productive docking pose\
-    * Lower the RMSD, the greater the mutant appears to dock the NCAA in a
-    productive pose.
+* Root-Mean-Square Deviation of native and exogenous docked amino acids\
+* Measures likelihood of mutant producing a productive docking pose\
+* Lower the RMSD, the greater the mutant appears to dock the NCAA in a
+productive pose.
