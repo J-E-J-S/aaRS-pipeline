@@ -51,6 +51,7 @@ if $install; then
     fi
 
     # Initialize CB-Dock
+    sed -i -e 's?templatePath?'$(pwd)/inputs/*pdb'?' ./resources/option
     $cbDock "$mglTools/python" $vina
     if [[ $? -eq 0 ]]
     then
