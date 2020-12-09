@@ -81,10 +81,10 @@ directory, in the form:
 {
     mutantID:
                 {
-                    'exogenousScores': []
-                    'nativeScore': float
-                    'Delta': []
-                    'RMSD' : []
+                    'exogenousScores': [],
+                    'nativeScore': float,
+                    'Delta': [],
+                    'RMSD' : [],
                 }
 }
 ```
