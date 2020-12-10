@@ -7,12 +7,13 @@ from shutil import copyfile
 from Bio.PDB.PDBParser import PDBParser
 from Bio.PDB.Polypeptide import PPBuilder
 
-mutantQn = 5
-rmsdCutOff = 10000
-resultsJSON = './output/results.json'
+mutantQn = int(sys.argv[1])
+rmsdCutOff = float(sys.argv[2])
+resultsJSON = sys.argv[3]
 
 
 def outputDir(mutantQn, rmsdCutOff, resultsJSON):
+    '''Filters mutants based on an RMSD cut off and compiled a results directory '''
 
     filteredMutants = {} # Results dictionary filtered on RMSD cut-off
 
@@ -21,7 +22,7 @@ def outputDir(mutantQn, rmsdCutOff, resultsJSON):
 
         # Filter by RMSD cut-off value
         for mutant in data:
-            if data[mutant]['RMSD'][0] <= float(rmsdCutOff):
+            if data[mutant]['RMSD'][0] <= rmsdCutOff:
                 filteredMutants[mutant] = data[mutant]
 
     # Rank mutants based on delta values
@@ -67,6 +68,7 @@ def outputDir(mutantQn, rmsdCutOff, resultsJSON):
     return outputFolder
 
 def createSummaryFasta(outputFolder):
+    ''' Collates all the fasta files into one '''
 
     f = open(outputFolder + '/rankedResults.fasta', 'a+')
 
