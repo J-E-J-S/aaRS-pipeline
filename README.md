@@ -92,8 +92,9 @@ directory, in the form:
 ```  
 This file becomes the store for all the data for the pipeline run.  
 ### Querying Results  
-1. Run the script: `queryResults.py <mutantQn> <rmsdCutOFf> </output/results.json>`
-in the /bin/ dir, Where:    
+1. Run the script: `python queryResults.py <mutantQn> <rmsdCutOFf> <./../output/results.json>`
+in the /bin/ dir  
+Where:      
 * mutantQn = number of mutants desired to filter down to  
 * rmsdCutOff = the minimal accepted RMSD value (2Å recommended)  
 * /output/results.json = path to the pipeline generated results.json    
