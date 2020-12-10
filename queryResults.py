@@ -1,5 +1,7 @@
 #!/bin/env python
 
+# USAGE: python queryResults.py mutantQn rmsdCutOff results.json 
+
 import json
 import os
 import sys
