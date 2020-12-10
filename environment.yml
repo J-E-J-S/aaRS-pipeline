@@ -72,4 +72,3 @@ dependencies:
   - xorg-xproto=7.0.31=h14c3975_1007
   - xz=5.2.5=h7b6447c_0
   - zlib=1.2.11=h7b6447c_3
-prefix: /home/jejs/anaconda3/envs/aaRS-pipeline
