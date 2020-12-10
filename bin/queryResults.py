@@ -1,7 +1,7 @@
 #!/bin/env python
 
 # USAGE: python queryResults.py mutantQn rmsdCutOff results.json
-# A 2Å RMSD Cut-Off is recommended 
+# A 2Å RMSD Cut-Off is recommended
 
 import json
 import os
@@ -35,7 +35,7 @@ def outputDir(mutantQn, rmsdCutOff, resultsJSON):
 
     rankedMutants = sorted(deltaDic, reverse=True) # lower delta = better
 
-    outputFolder = str(mutantQn) + '_rankedResults'
+    outputFolder = './../output/' + str(mutantQn) + '_rankedResults'
     os.mkdir(outputFolder)
 
     if len(rankedMutants) < mutantQn:
