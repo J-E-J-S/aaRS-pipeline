@@ -50,14 +50,14 @@ def outputDir(mutantQn, rmsdCutOff, resultsJSON):
 
         f = open(mutantDir + '/' + rankedMutants[count] + '.fasta', 'a+')
 
-        f.write('>' + rankedMutants[count] + ' | rank=' + str(count+1) + ' | delta=' + str(filteredMutants[rankedMutants[count]]['Delta'][0]) + ' kcal/mol | dockScore=' + str(filteredMutants[rankedMutants[count]]['exogenousScores'][0]) + ' kcal/mol' + ' | RMSD=' + str(filteredMutants[rankedMutants[count]]['RMSD'][0]) + 'Å\n' )
+        f.write('>' + rankedMutants[count] + ' | rank=' + str(count+1) + ' | delta=' + str(filteredMutants[rankedMutants[count]]['Delta'][0]) + ' kcal/mol | dockScore=' + str(filteredMutants[rankedMutants[count]]['exogenousScores'][0]) + ' kcal/mol' + ' | RMSD=' + str(filteredMutants[rankedMutants[count]]['RMSD'][0]) + ' Å\n' )
 
         structure = PDBParser().get_structure('mutant', structurePath)
         ppb = PPBuilder()
         seq = [] # If dimers then only 1 included (1 polypeptide)
         for pp in ppb.build_peptides(structure):
             seq.append(str(pp.get_sequence()))
-        f.write(seq[0])
+        f.write(seq[0] + '\n')
         f.close()
 
         count += 1
@@ -66,6 +66,23 @@ def outputDir(mutantQn, rmsdCutOff, resultsJSON):
 
     return outputFolder
 
+def createSummaryFasta(outputFolder):
+
+    f = open(outputFolder + '/rankedResults.fasta', 'a+')
+
+    for root, dirs, files in os.walk(outputFolder):
+        for file in files:
+            if file.endswith('.fasta'):
+                mutantFile = open(os.path.join(root, file), 'r')
+                f.write(mutantFile.read())
+                mutantFile.close()
+
+    f.close()
 
 
-outputDir(mutantQn, rmsdCutOff, resultsJSON)
+def main():
+
+    outputFolder = outputDir(mutantQn, rmsdCutOff, resultsJSON)
+    createSummaryFasta(outputFolder)
+
+main()
