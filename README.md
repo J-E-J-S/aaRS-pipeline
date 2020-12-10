@@ -89,4 +89,15 @@ directory, in the form:
                     'dockingPath': string
                 }
 }
-```
+```  
+This file becomes the store for all the data for the pipeline run.  
+### Querying Results  
+1. Run the script: `queryResults.py <mutantQn> <rmsdCutOFf> </output/results.json>`  
+Where:  
+* <mutantQn> = number of mutants desired to filter down to  
+* <rmsdCutOff> = the minimal accepted RMSD value (2Å recommended)  
+* </output/results.json> = path to the pipeline generated results.json    
+2. Manually inspect the results in PyMOL against the wild-type template  
+* Look for similarity in binding mode of the target NCAA to the native CAA  
+* Mutant Structure `.pdb` and NCAA docking results `.mol2` are compiled into
+the queried results generated directory  
