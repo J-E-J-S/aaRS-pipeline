@@ -24,7 +24,7 @@ Mutants are then scored for fitness using the Delta and RMSD metrics.
 **Delta:**
 * Measures enzyme engineered favourability as: `NCAA Dock Score - Native Dock Score`
 * Lower the score, the greater the engineered affinity for the NCAA over the
-native substrate\
+native substrate
 
 **RMSD:**
 * Estimation metric of the mutant producing a productive docking pose with the
@@ -36,7 +36,7 @@ productive binding pose.
 
 
 ## Quick Start
-This is a [Nextflow](https://www.nextflow.io/) pipeline and as such can only be
+This is a [Nextflow](https://www.nextflow.io/) pipeline and as such, can only be
 run on a POSIX OS, if using windows I'd recommend using the [Windows Subsystem for
 Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)  
 1. `git clone https://github.com/J-E-J-S/aaRS-pipeline`
@@ -85,6 +85,8 @@ directory, in the form:
                     'nativeScore': float,
                     'Delta': [],
                     'RMSD' : [],
+                    'structurePath': string,
+                    'dockingPath': string
                 }
 }
 ```
