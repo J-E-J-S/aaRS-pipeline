@@ -1,6 +1,7 @@
 #!/bin/env python
 
-# USAGE: python queryResults.py mutantQn rmsdCutOff results.json 
+# USAGE: python queryResults.py mutantQn rmsdCutOff results.json
+# A 2Å RMSD Cut-Off is recommended 
 
 import json
 import os
