@@ -163,7 +163,7 @@ def createSummaryDic(nativeDockingDir, exogenousDockingDir):
     for path in elLogs:
         elScores[calculateDockScore(path)[0]] = path # This needs to be path to log file because will be looped later
 
-    summaryDic = {'exogenousScores': '', 'nativeScore':'', 'Delta':'', 'RMSD':'' } # Results for mutant
+    summaryDic = {'exogenousScores': '', 'nativeScore':'', 'Delta':'', 'RMSD':'', 'structurePath':'', 'dockingPath':''} # Results for mutant
 
     elMaxDock = min(elScores) # finds lowest key value in dic i.e. greatest docking score
     elMaxLog = elScores[elMaxDock] # finds path to log file of greatest docking scoring replicate
@@ -172,6 +172,9 @@ def createSummaryDic(nativeDockingDir, exogenousDockingDir):
 
     nlMaxDock = min(nlScores) # Find lowest tyrosine score i.e. Greatest docking scoring
     summaryDic['nativeScore'] = nlMaxDock # Update results dictionary for native score
+
+    summaryDic['structurePath'] = os.path.dirname(elMaxLog) + '/receptor.pdb' # Path to mutant structure 
+    summaryDic['dockingPath'] = os.path.dirname(elMaxLog) + '/results.mol2' # Path to winning docking results
 
     deltas = []
     for score in elScoreList:
