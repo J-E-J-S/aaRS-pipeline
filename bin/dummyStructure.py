@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# This script is used to simulate a cartesian_ddg call, speeds up for error checking
+
 import os
 
 f = open('test.ddg', 'a+')
