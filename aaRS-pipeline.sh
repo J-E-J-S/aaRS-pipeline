@@ -52,7 +52,7 @@ if $install; then
 
     # Initialize CB-Dock
     option='-s ' # Need to properly escape this in sed function
-    sed -i '1s?.*?'"$option"$(pwd)/inputs/*.pdb'?' ./resources/option # Need to change template option file to path to template enzyme
+    sed -i '1s?.*?'"$option"$(pwd)/inputs/template.pdb'?' ./resources/option # Need to change template option file to path to template enzyme
     $cbDock "$mglTools/python" $vina
     if [[ $? -eq 0 ]]
     then
