@@ -28,7 +28,7 @@ process structurePrediction{
 
     script:
     """
-    dummyStructure.py @$optionFile > structureDir # replace with rossetaCartesian when in prod.
+    !{rosettaCartesian} @$optionFile > structureDir # replace with rossetaCartesian when in prod.
     echo ${optionFile}
     """
 
