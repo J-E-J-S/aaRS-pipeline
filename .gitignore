@@ -1,6 +1,4 @@
 /work/
-/resources/
 *.nextflow.log*
 *.nextflow
 /env/
-/output/
