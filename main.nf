@@ -12,7 +12,7 @@ Author - James Sanders
 
 // Declare Global Variables
 optionFiles_ch = Channel.fromPath(launchDir + '/output/optionFiles/*')
-rosettaCartesian = launchDir + '/resources/rosetta_bin_linux_2020.08.61146_bundle/main/source/build/src/release/linux/3.10/64/x86/gcc/4.8/static/cartesian_ddg.static.linuxgccrelease'
+rosettaCartesian = launchDir + '/resources/rosetta*/main/source/bin/cartesian_ddg*' // Use symlink location as probably more version stable
 cbdock = launchDir + '/resources/CB-Dock/prog/AutoBlindDock.pl'
 
 // Passes option Files to Rosetta Cartesian for Structure Prediction
@@ -28,7 +28,7 @@ process structurePrediction{
 
     script:
     """
-    !{rosettaCartesian} @$optionFile > structureDir # replace with rossetaCartesian when in prod.
+    !{rosettaCartesian} @$optionFile > structureDir
     echo ${optionFile}
     """
 

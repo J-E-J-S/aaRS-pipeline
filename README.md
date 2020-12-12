@@ -36,6 +36,7 @@ productive binding pose.
 
 
 ## Quick Start
+Warning - This pipeline bundles [Rosetta 3](https://www.rosettacommons.org/software/license-and-download) which is an extremely large software suit, the compressed resources dir = ~18Gb, becoming ~64Gb unpacked.  
 This is a [Nextflow](https://www.nextflow.io/) pipeline and as such, can only be
 run on a POSIX OS, if using windows I'd recommend using the [Windows Subsystem for
 Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)  
