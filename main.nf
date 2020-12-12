@@ -11,7 +11,7 @@ Author - James Sanders
 """
 
 // Declare Global Variables
-optionFiles_ch = Channel.fromPath(launchDir + '/output/optionFiles/*')
+optionFiles_ch = Channel.fromPath(launchDir + '/output/optionFiles/*option')
 rosettaCartesian = launchDir + '/resources/rosetta*/main/source/bin/cartesian_ddg*' // Use symlink location as probably more version stable
 cbdock = launchDir + '/resources/CB-Dock/prog/AutoBlindDock.pl'
 
