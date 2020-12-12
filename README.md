@@ -34,9 +34,12 @@ derived docking position of the native amino acid
 * Lower the RMSD, the greater the mutant appears to dock the NCAA in a
 productive binding pose.
 
+## Prerequisites  
+This pipeline using the Rosetta 3 cartesian_ddg script for structure prediction.
+This software suite is incredibly large (~18Gb compressed) and so can't be packaged
+within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory to the /resources/ directory.   
 
-## Quick Start
-Warning - This pipeline bundles [Rosetta 3](https://www.rosettacommons.org/software/license-and-download) which is an extremely large software suit, the compressed resources dir = ~18Gb, becoming ~64Gb unpacked.  
+## Quick Start  
 This is a [Nextflow](https://www.nextflow.io/) pipeline and as such, can only be
 run on a POSIX OS, if using windows I'd recommend using the [Windows Subsystem for
 Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)  
