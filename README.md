@@ -13,8 +13,8 @@ pre-existing CAAs.
 ![](assets/translation.jpg)
 
 ## Workflow
-The engineering workflow facilitates structure prediction of mutant enzymes
-through [Rosetta Cartesian](https://www.rosettacommons.org/docs/latest/cartesian-ddG) energy minimization, followed by blind docking of
+The engineering workflow facilitates structure prediction of the complete  
+permutational complexity of the defined mutant landscape through [Rosetta Cartesian](https://www.rosettacommons.org/docs/latest/cartesian-ddG) energy minimization, followed by blind docking of
 native and target (exogenous) amino acids by [CB-Dock](http://clab.labshare.cn/cb-dock/php/).
 Mutants are then scored for fitness using the Delta and RMSD metrics.
 
@@ -35,7 +35,7 @@ derived docking position of the native amino acid
 productive binding pose.
 
 ## Prerequisites  
-This pipeline using the Rosetta 3 cartesian_ddg script for structure prediction.
+This pipeline uses the Rosetta 3 cartesian_ddg script for structure prediction.
 This software suite is incredibly large (~18Gb compressed) and so can't be packaged
 within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory to the /resources/ directory.   
 
