@@ -1,0 +1,15 @@
+-s /mnt/c/Users/James/documents/aaRS-pipeline/inputs/template.pdb
+-ddg:iterations 3
+-ddg::cartesian
+-ddg::dump_pdbs true
+-bbnbrs 1
+-fa_max_dis 9.0
+-score:weights ref2015_cart
+-relax:cartesian
+-relax:min_type lbfgs_armijo_nonmonotone
+-ex1
+-ex2
+-use_input_sc
+-flip_HNQ
+-optimization:default_max_cycles 200
+-crystal_refine
