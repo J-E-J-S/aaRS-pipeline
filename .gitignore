@@ -2,4 +2,4 @@
 *.nextflow.log*
 *.nextflow
 /env/
-/resources/
+/resources/rosetta*
