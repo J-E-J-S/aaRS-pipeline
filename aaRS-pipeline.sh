@@ -31,19 +31,7 @@ done
 
 if $install; then
     echo 'Begining Installation of Pipeline Resources.'
-
-    echo 'Unpacking Resources - This May Take Some Time.'
-    cd resources
-    tar -xzvf resources.tgz # Add &>/dev/null to silence
-    if [[ $? -eq 0 ]]
-    then
-        echo 'Unpacking Successful.'
-        cd ..
-    else
-        echo "Error in Unpacking Resources."
-        exit 1
-    fi
-
+    
     # Declare Variables
     cbDock="$(pwd)/resources/CB-Dock/setup.sh"
     vina="$(pwd)/resources/autodock_vina_1_1_2_linux_x86/bin/vina"
