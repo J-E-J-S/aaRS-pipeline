@@ -37,7 +37,7 @@ productive binding pose.
 ## Prerequisites  
 This pipeline uses the Rosetta 3 cartesian_ddg script for structure prediction.
 This software suite is incredibly large (~18Gb compressed) and so can't be packaged
-within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory to the /resources/ directory.   
+within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory with binaries (or compile yourself), to the /resources/ directory.   
 
 ## Quick Start  
 This is a [Nextflow](https://www.nextflow.io/) pipeline and as such, can only be
@@ -101,7 +101,10 @@ in the /bin/ dir
 Where:      
 * mutantQn = number of mutants desired to filter down to  
 * rmsdCutOff = the minimal accepted RMSD value (2Å recommended)  
-* /output/results.json = path to the pipeline generated results.json    
+* /output/results.json = path to the pipeline generated results.json  
+Creates individual summary directories for mutants with the structure`.pdb`,  
+docking_results`.mol2` and a summary `.fasta` file, as well as an overall  
+summary `.fasta` file.     
 2. Manually inspect the results in PyMOL against the wild-type template  
 * Look for similarity in binding mode of the target NCAA to the native CAA  
 * Mutant Structure `.pdb` and NCAA docking results `.mol2` are compiled into
