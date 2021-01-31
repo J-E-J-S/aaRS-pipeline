@@ -26,11 +26,11 @@ process structurePrediction{
     stdout mutantID_ch
 
 
-    script:
-    """
-    !{rosettaCartesian} @$optionFile > structureDir
-    echo ${optionFile}
-    """
+    shell:
+    '''
+    !{rosettaCartesian} @!{optionFile} > structureDir
+    echo !{optionFile}
+    '''
 
 }
 
