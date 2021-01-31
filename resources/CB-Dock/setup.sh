@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/bash
 if [ ! "$#" -gt 1 ]
   then
     echo "No arguments supplied"
