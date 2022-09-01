@@ -37,7 +37,8 @@ productive binding pose.
 ## Prerequisites  
 This pipeline uses the Rosetta 3 cartesian_ddg script for structure prediction.
 This software suite is incredibly large (~18Gb compressed) and so can't be packaged
-within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory with binaries (or compile yourself), to the /resources/ directory.   
+within this repository. [Download here](https://www.rosettacommons.org/software/license-and-download) and move the uncompressed directory with binaries (or compile yourself), to the /resources/ directory.  
+(Version rossetta_bin_linux_2020.08.61146_bundle)     
 
 ## Quick Start  
 This is a [Nextflow](https://www.nextflow.io/) pipeline and as such, can only be
